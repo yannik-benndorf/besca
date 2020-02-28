@@ -3,7 +3,7 @@ package:
   version: "2.1"
 
 source:
-  git_url: https://github.roche.com/BEDA/besca.git
+  git_url: https://github.com/bedapub/besca.git
   git_tag: conda
 
 requirements:
