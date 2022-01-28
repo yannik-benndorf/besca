@@ -29,15 +29,15 @@ sc.pl.umap(
     adata_subset, color=["leiden", "CD3G", "CD8A", "CD4", "IL7R", "NKG7", "GNLY"]
 )
 
-# append new celltype labels to the subclusters.
-# This is an approximative hand annotation that should be dealt into more widths.
+
+# annotate celltypes based on the new leiden clusters
 new_labels = [
     "NK cell",  # 0
-    "CD4 T-cell",  # 1
-    "CD8 T-cell",  # 2
-    "CD4 T-cell",  # 3
+    "CD8 T-cell",  # 1
+    "CD4 T-cell",  # 2
+    "CD8 T-cell",  # 3
     "CD8 T-cell",  # 4
-    "CD8 T-cell",  # 5
+    "CD4 T-cell",  # 5
     "CD4 T-cell",  # 6
     "CD4 T-cell",  # 7
     "CD4 T-cell",  # 8
@@ -45,13 +45,13 @@ new_labels = [
     "CD4 T-cell",  # 10
     "CD4 T-cell",  # 11
     "CD4 T-cell",  # 12
-]  # 10
+    "CD4 T-cell",  # 13
+    "CD4 T-cell",  # 14
+]  #
 
-# merge the labels back into the original adata object
-# note this will overwrite what ever was saved in adata.obs.celltype;
-# Here is was not assigned yet.
-bc.tl.rc.annotate_new_cellnames(
-    adata, adata_subset, names=new_labels, new_label="celltype"
-)
+# merge new celllabels back into the original adata object containing all cells
+# Note: this will overwrite the labels contained in adata.obs.celltype! If you w
+bc.tl.rc.annotate_new_cellnames(adata, adata_subset, names=new_labels)
 
-print(adata.obs.celltype.value_counts())
+# visualize finished celltype annotation
+sc.pl.umap(adata, color=["celltype"])

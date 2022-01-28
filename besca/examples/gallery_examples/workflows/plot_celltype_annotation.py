@@ -19,7 +19,6 @@ import random
 import besca as bc
 import scanpy as sc
 
-random.seed(1)
 # load preprocessed dataset (included in BESCA for demonstration purposes)
 adata = bc.datasets.pbmc3k_filtered()
 
@@ -72,16 +71,17 @@ sc.pl.umap(adata, color=["FCER1A", "CD14", "FCGR3A"])
 # be demonstrated in the rest of this tutorial.
 
 # define high-level celltype annotation
-new_labels = [
+new_labels = [   
     "Tcells",  # 0
-    "CD14+ monocyte",  # 1
-    "mixed",  # 2
+    "Tcells",  # 1
+    "CD14+ monocyte",  # 2
     "Bcells",  # 3
-    "Tcells",  # 4
+    "mixed",  # 4
     "FCGR3A+ monocyte",  # 5
     "pDC",  # 6
-    "Tcells",
-]  # 7
+]  # 
+
+bc.tl.annotate_cells_clustering(adata, new_labels)
 
 bc.tl.annotate_cells_clustering(adata, new_labels)
 
@@ -111,20 +111,21 @@ sc.pl.umap(
 # annotate celltypes based on the new leiden clusters
 new_labels = [
     "NK cell",  # 0
-    "CD4 T-cell",  # 1
+    "CD8 T-cell",  # 1
     "CD4 T-cell",  # 2
-    "CD4 T-cell",  # 3
-    "CD4 T-cell",  # 4
-    "CD8 T-cell",  # 5
+    "CD8 T-cell",  # 3
+    "CD8 T-cell",  # 4
+    "CD4 T-cell",  # 5
     "CD4 T-cell",  # 6
-    "CD8 T-cell",  # 7
+    "CD4 T-cell",  # 7
     "CD4 T-cell",  # 8
     "CD4 T-cell",  # 9
     "CD4 T-cell",  # 10
     "CD4 T-cell",  # 11
     "CD4 T-cell",  # 12
-    "NK cell",  # 13
-]
+    "CD4 T-cell",  # 13
+    "CD4 T-cell",  # 14
+]  #
 
 
 # merge new celllabels back into the original adata object containing all cells
